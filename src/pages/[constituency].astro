@@ -10,7 +10,7 @@ export function getStaticPaths() {
 const { constituency } = Astro.params;
 ---
 
-<section class="flex flex-col lg:flex-row gap-10 p-10">
+<section class="flex flex-col lg:flex-row gap-10 p-10 text-black">
   <div class="flex flex-row lg:flex-col gap-10">
     <div><p>GRAPH PLACEHOLDER</p></div>
     <p class="text-center">
@@ -31,13 +31,13 @@ const { constituency } = Astro.params;
       </p>
     </div>
     <button
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
       type="button"
     >
       LET YOUR MP KNOW
     </button>
     <button
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
       type="button"
     >
       SEARCH AGAIN
