@@ -10,16 +10,20 @@ export function getStaticPaths() {
 const { constituency } = Astro.params;
 ---
 
-<section class="flex flex-col lg:flex-row gap-10 p-10 text-black">
-  <div class="flex flex-row lg:flex-col gap-10">
-    <div><p>GRAPH PLACEHOLDER</p></div>
-    <p class="text-center">
+<section
+  class="flex flex-col lg:flex-row gap-10 p-10 text-black justify-center items-center"
+>
+  <div
+    class="flex flex-row lg:flex-col gap-10 justify-center items-center text-center"
+  >
+    <div><p>GRAPH</p><p>PLACE</p><p>HOLDER</p></div>
+    <p>
       <strong class="text-5xl font-bold block">XX%</strong>
       are renting
     </p>
   </div>
-  <div class="flex flex-row lg:flex-col gap-5">
-    <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-5 lg:basis-1/2 items-center">
+    <div class="flex flex-col gap-2 lg:text-left text-center">
       <p>
         <strong class="text-5xl font-bold"> XXXX</strong> rent out of
       </p>
@@ -31,13 +35,13 @@ const { constituency } = Astro.params;
       </p>
     </div>
     <button
-      class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline lg:w-2/3 w-full"
       type="button"
     >
       LET YOUR MP KNOW
     </button>
     <button
-      class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline lg:w-2/3 w-full"
       type="button"
     >
       SEARCH AGAIN
