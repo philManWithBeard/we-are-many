@@ -1,0 +1,46 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { constituency: "Aldershot" } },
+    { params: { constituency: "Aldridge-Brownhills" } },
+    { params: { constituency: "Altrincham-and-Sale-West" } },
+  ];
+}
+
+const { constituency } = Astro.params;
+---
+
+<section class="flex flex-col lg:flex-row gap-10 p-10">
+  <div class="flex flex-row lg:flex-col gap-10">
+    <div><p>GRAPH PLACEHOLDER</p></div>
+    <p class="text-center">
+      <strong class="text-5xl font-bold block">XX%</strong>
+      are renting
+    </p>
+  </div>
+  <div class="flex flex-row lg:flex-col gap-5">
+    <div class="flex flex-col gap-2">
+      <p>
+        <strong class="text-5xl font-bold"> XXXX</strong> rent out of
+      </p>
+      <p>
+        <strong class="text-5xl font-bold"> XXXX</strong> people in
+      </p>
+      <p class="text-5xl font-bold">
+        {constituency}
+      </p>
+    </div>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      type="button"
+    >
+      LET YOUR MP KNOW
+    </button>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+      type="button"
+    >
+      SEARCH AGAIN
+    </button>
+  </div>
+</section>
