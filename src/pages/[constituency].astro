@@ -1,4 +1,7 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import constituencies from "../data/constituencies.js";
+
 export function getStaticPaths() {
   return [
     { params: { constituency: "Aldershot" } },
@@ -8,43 +11,51 @@ export function getStaticPaths() {
 }
 
 const { constituency } = Astro.params;
+
+const wpc = constituencies.find(
+  (constituencyArray) => constituencyArray[1] === constituency
+);
 ---
 
-<section
-  class="flex flex-col lg:flex-row gap-10 p-10 text-black justify-center items-center"
->
-  <div
-    class="flex flex-row lg:flex-col gap-10 justify-center items-center text-center"
-  >
-    <div><p>GRAPH</p><p>PLACE</p><p>HOLDER</p></div>
-    <p>
-      <strong class="text-5xl font-bold block">XX%</strong>
-      are renting
-    </p>
-  </div>
-  <div class="flex flex-col gap-5 items-center lg:items-start">
-    <div class="flex flex-col gap-2 lg:text-left text-center">
-      <p>
-        <strong class="text-5xl font-bold"> XXXX</strong> rent out of
-      </p>
-      <p>
-        <strong class="text-5xl font-bold"> XXXX</strong> people in
-      </p>
-      <p class="text-5xl font-bold text-wrap max-w-80">
-        {constituency}
-      </p>
-    </div>
-    <button
-      class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
-      type="button"
+<Layout title="Welcome to Astro.">
+  <main class="w-screen text-xl">
+    <section
+      class="flex flex-col lg:flex-row gap-10 py-10 text-black justify-center items-center"
     >
-      LET YOUR MP KNOW
-    </button>
-    <button
-      class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
-      type="button"
-    >
-      SEARCH AGAIN
-    </button>
-  </div>
-</section>
+      <div
+        class="flex flex-row lg:flex-col gap-10 justify-center items-center text-center"
+      >
+        <div><p>GRAPH</p><p>PLACE</p><p>HOLDER</p></div>
+        <p class="text-2xl">
+          <strong class="text-6xl font-bold block">XX%</strong>
+          are renting
+        </p>
+      </div>
+      <div class="flex flex-col gap-5 items-center lg:items-start">
+        <div class="flex flex-col gap-2 lg:text-left text-center">
+          <p>
+            <strong class="text-6xl font-bold"> XXXX</strong> rent out of
+          </p>
+          <p>
+            <strong class="text-6xl font-bold"> XXXX</strong> people in
+          </p>
+          <p class="text-5xl font-bold text-wrap max-w-80">
+            {constituency}
+          </p>
+        </div>
+        <button
+          class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
+          type="button"
+        >
+          LET YOUR MP KNOW
+        </button>
+        <button
+          class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
+          type="button"
+        >
+          SEARCH AGAIN
+        </button>
+      </div>
+    </section>
+  </main>
+</Layout>
