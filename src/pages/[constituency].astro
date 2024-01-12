@@ -1,0 +1,12 @@
+---
+export function getStaticPaths() {
+  return [
+    {params: {constituency: 'Aldershot'}},
+    {params: {constituency: 'Aldridge-Brownhills'}},
+    {params: {constituency: 'Altrincham-and-Sale-West'}},
+  ];
+}
+
+const { constituency } = Astro.params;
+---
+<div>Constituency: {constituency}!</div>
