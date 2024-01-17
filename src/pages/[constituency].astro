@@ -20,12 +20,21 @@ const wpc = constituencies.find(
   (constituencyArray) => constituencyArray[1] === Astro.params.constituency
 );
 
+function resolveAfter2Seconds() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved");
+    }, 2000);
+  });
+}
+
 //ONS API fetch
 const queryURL =
   "https://api.beta.ons.gov.uk/v1/datasets/TS054/editions/2021/versions/4/json?area-type=wpc," +
   wpc[0];
 const queryDataJson = await fetch(queryURL);
 const queryData = await queryDataJson.json();
+const result = await resolveAfter2Seconds();
 const data = queryData.observations;
 
 const sumStat = data.reduce(
