@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import constituencies from "../data/constituencies.js";
+import Layout from "../../layouts/Layout.astro";
+import constituencies from "../../data/constituencies";
 
 export function getStaticPaths() {
   const constitStatic = constituencies.map((constituency) => {
