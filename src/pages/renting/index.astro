@@ -37,9 +37,12 @@ import Layout from "../../layouts/Layout.astro";
     </section>
   </main>
   <script>
+    import { navigate } from "astro:transitions/client";
+
     const postcodeBtn = document.querySelector("#postcodeBtn");
     postcodeBtn.addEventListener("click", () => {
       console.log("clicked");
+      navigate("./Meriden");
     });
   </script>
 </Layout>
