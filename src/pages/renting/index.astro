@@ -13,55 +13,64 @@ import Layout from "../../layouts/Layout.astro";
           I want my Member of Parliament to know that people who rent have a lot
           of votes
         </h2>
-        <form action="/my-handling-form-page" method="post">
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-            id="postcodeInput"
-            type="text"
-            placeholder="Postcode"
-          />
+        <form class="group" novalidate>
+          <label for="postcode" class="mb-5">
+            <span>Postcode</span>
+            <input
+              type="text"
+              name="postcode"
+              id="postcode"
+              class="w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 peer"
+              placeholder=" "
+              required
+              pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
+            />
+            <span
+              class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
+            >
+              Please enter a valid postcode
+            </span>
+          </label>
+          <button
+            type="submit"
+            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full mt-5 group-invalid:pointer-events-none group-invalid:opacity-30"
+            >HOW MANY ARE WITH ME</button
+          >
         </form>
-        <button
-          class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
-          type="button"
-          id="postcodeBtn"
-        >
-          HOW MANY ARE WITH ME
-        </button>
-      </div>
-
-      <!--  -->
-      <div class="flex flex-col gap-5 items-center lg:items-start">
-        <img src="/../../../public/artwork.png" alt="" />
       </div>
     </section>
+
+    <!--  -->
+    <div class="flex flex-col gap-5 items-center lg:items-start">
+      <img src="/../../../public/artwork.png" alt="" />
+    </div>
   </main>
-  <script>
-    import { navigate } from "astro:transitions/client";
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const postcodeBtnEl = document.getElementById("postcodeBtn");
-      const postcodeInputEl = document.getElementById("postcodeInput");
-
-      postcodeBtnEl.addEventListener("click", (event) => {
-        event.preventDefault();
-        const postcode = postcodeInputEl.value;
-        retrieveCID(postcode);
-      });
-    });
-
-    //FTP API fetch
-    function retrieveCID(postcode) {
-      const queryURL =
-        "https://findthatpostcode.uk//postcodes/" + postcode + ".json";
-      fetch(queryURL)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          const pconValue = data.data.attributes.pcon_name.replace(/\s/g, "-");
-          navigate("./" + pconValue);
-        });
-    }
-  </script>
 </Layout>
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const postcodeBtnEl = document.getElementById("postcodeBtn");
+    const postcodeInputEl = document.getElementById("postcodeInput");
+
+    postcodeBtnEl.addEventListener("click", (event) => {
+      event.preventDefault();
+      const postcode = postcodeInputEl.value;
+      retrieveCID(postcode);
+    });
+  });
+
+  //FTP API fetch
+  function retrieveCID(postcode) {
+    const queryURL =
+      "https://findthatpostcode.uk/postcodes/" + postcode + ".json";
+    fetch(queryURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        const pconValue = data.data.attributes.pcon_name.replace(/\s/g, "-");
+        navigate("./" + pconValue);
+      });
+  }
+</script>
