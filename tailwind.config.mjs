@@ -1,8 +1,13 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["Cormorant Variable", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         white: "#ffffff",
         yellow: "#F0D898",
