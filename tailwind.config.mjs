@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Cormorant Variable", ...defaultTheme.fontFamily.sans],
+        serif: ["Cormorant Variable", ...defaultTheme.fontFamily.serif],
         sans: ["Cabin Variable", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
