@@ -16,6 +16,8 @@ export function getStaticPaths() {
 
 const { constituency } = Astro.params;
 
+const readableConstit = constituency.replace(/\-/g, " ");
+
 const wpc = constituencies.find(
   (constituencyArray) => constituencyArray[1] === Astro.params.constituency
 );
@@ -68,7 +70,7 @@ const rentingPercentStat = Math.round((rentingStat / sumStat) * 100);
             <strong class="text-6xl font-bold"> {sumStat}</strong> people in
           </p>
           <p class="text-5xl font-bold text-wrap max-w-80">
-            {constituency}
+            {readableConstit}
           </p>
         </div>
         <button
