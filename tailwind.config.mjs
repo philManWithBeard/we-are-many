@@ -9,6 +9,15 @@ export default {
         serif: ["Cormorant Variable", ...defaultTheme.fontFamily.sans],
         sans: ["Cabin Variable", ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        "6xl": [
+          "3.5rem",
+          {
+            lineHeight: "4rem",
+            fontWeight: "200",
+          },
+        ],
+      },
       colors: {
         white: "#ffffff",
         yellow: "#F0D898",
