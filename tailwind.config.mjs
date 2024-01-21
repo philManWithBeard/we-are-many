@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         serif: ["Cormorant Variable", ...defaultTheme.fontFamily.sans],
+        sans: ["Cabin Variable", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         white: "#ffffff",
