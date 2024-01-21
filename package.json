@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@fontsource-variable/cabin": "^5.0.17",
+    "@fontsource-variable/cormorant": "^5.0.9",
     "astro": "^4.1.2",
     "async-sema": "^3.1.1",
     "tailwindcss": "^3.4.1"
