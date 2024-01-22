@@ -17,13 +17,13 @@ import electionImage from "../../../src/images/artwork.png";
           I want my Member of Parliament to know: People who rent have a lot of
           votes
         </h2>
-        <form class="group" novalidate>
+        <form class="group" method="POST" novalidate>
           <input
             type="text"
             name="postcode"
             id="postcodeInput"
             class="border text-center border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-            placeholder="Postcode"
+            placeholder="Enter Your Postcode"
             required
             pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
           />
@@ -34,8 +34,8 @@ import electionImage from "../../../src/images/artwork.png";
           </span>
           <button
             type="submit"
-            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline underline-offset-4 font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full mt-5 group-invalid:pointer-events-none group-invalid:opacity-30"
-            id="postcodeBtn">HOW MANY ARE WITH ME</button
+            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline underline-offset-4 font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full mt-5 group-invalid:pointer-events-none group-invalid:opacity-70"
+            id="postcodeBtn">HOW MANY ARE WITH ME?</button
           >
         </form>
       </div>
@@ -55,12 +55,14 @@ import electionImage from "../../../src/images/artwork.png";
 <script>
   import { navigate } from "astro:transitions/client";
 
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("astro:page-load", function () {
     const postcodeBtnEl = document.getElementById("postcodeBtn");
     const postcodeInputEl = document.getElementById("postcodeInput");
+    console.log("hello world");
 
     postcodeBtnEl.addEventListener("click", (event) => {
       event.preventDefault();
+
       const postcode = postcodeInputEl.value;
       retrieveCID(postcode);
     });
