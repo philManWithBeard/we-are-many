@@ -24,7 +24,7 @@ const wpc = constituencies.find(
 );
 
 // Make the constituency human readable
-const readableConstit = constituency.replace(/\-/g, " ");
+const readableConstit = constituency.replace(/\_/g, " ");
 
 // Throttle api calls
 function resolveAfterHalfSecond() {
@@ -67,8 +67,6 @@ const members = async (readableConstit) => {
     queryData.items[0].value.currentRepresentation.member.value.id;
   return parseInt(memberID);
 };
-
-const mpID = members(readableConstit);
 
 //Members API email fetch
 const retrieveEmail = async (memberID) => {

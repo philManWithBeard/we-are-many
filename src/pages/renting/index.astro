@@ -77,7 +77,7 @@ import electionImage from "../../../src/images/artwork.png";
         return response.json();
       })
       .then(function (data) {
-        const pconValue = data.data.attributes.pcon_name.replace(/\s/g, "-");
+        const pconValue = data.data.attributes.pcon_name.replace(/\s/g, "_");
         navigate("./" + pconValue);
       });
   }
