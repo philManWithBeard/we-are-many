@@ -491,7 +491,6 @@ E14001021	Watford
 E14001022	Waveney
 E14001023	Wealden
 E14001024	Weaver_Vale
-E14001025	Wellingborough
 E14001026	Wells
 E14001027	Welwyn_Hatfield
 E14001028	Wentworth_and_Dearne
