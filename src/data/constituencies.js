@@ -364,7 +364,6 @@ E14000893	Reigate
 E14000894	Ribble_Valley
 E14000895	Richmond_(Yorks)
 E14000896	Richmond_Park
-E14000897	Rochdale
 E14000898	Rochester_and_Strood
 E14000899	Rochford_and_Southend_East
 E14000900	Romford
