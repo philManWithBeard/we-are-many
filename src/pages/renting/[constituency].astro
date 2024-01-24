@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import constituencies from "../../data/constituencies";
 
+// makes static page for each constituency
 export function getStaticPaths() {
   const constitStatic = constituencies.map((constituency) => {
     const returnStat = {
@@ -14,37 +15,72 @@ export function getStaticPaths() {
   return constitStatic;
 }
 
+// pass constituency variable to the page
 const { constituency } = Astro.params;
 
-const readableConstit = constituency.replace(/\-/g, " ");
-
+//
 const wpc = constituencies.find(
   (constituencyArray) => constituencyArray[1] === Astro.params.constituency
 );
 
-function resolveAfter1Second() {
+// Make the constituency human readable
+const readableConstit = constituency.replace(/\-/g, " ");
+
+// Throttle api calls
+function resolveAfterHalfSecond() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("resolved");
-    }, 1000);
+    }, 500);
   });
 }
 
 //ONS API fetch
-const queryURL =
-  "https://api.beta.ons.gov.uk/v1/datasets/TS054/editions/2021/versions/4/json?area-type=wpc," +
-  wpc[0];
-const queryDataJson = await fetch(queryURL);
-const queryData = await queryDataJson.json();
-const result = await resolveAfter1Second();
-const data = queryData.observations;
+const onsCall = async (wpc) => {
+  const queryURL =
+    "https://api.beta.ons.gov.uk/v1/datasets/TS054/editions/2021/versions/4/json?area-type=wpc," +
+    wpc[0];
+  const queryDataJson = await fetch(queryURL);
+  const queryData = await queryDataJson.json();
+  await resolveAfterHalfSecond();
+  const data = queryData.observations;
+  return data;
+};
 
+// ONS variables for jsx
+const data = await onsCall(wpc);
 const sumStat = data.reduce(
   (accumulator, currentValue) => accumulator + currentValue
 );
-
 const rentingStat = data[6] + data[7];
 const rentingPercentStat = Math.round((rentingStat / sumStat) * 100);
+
+//Members API Member ID fetch
+const members = async (readableConstit) => {
+  const queryURL =
+    "https://members-api.parliament.uk/api/Location/Constituency/Search?searchText=" +
+    readableConstit +
+    "&skip=0&take=1";
+  const queryDataJson = await fetch(queryURL);
+  const queryData = await queryDataJson.json();
+  const memberID =
+    queryData.items[0].value.currentRepresentation.member.value.id;
+  return parseInt(memberID);
+};
+
+const mpID = members(readableConstit);
+
+//Members API email fetch
+const retrieveEmail = async (memberID) => {
+  var queryURL =
+    "https://members-api.parliament.uk/api/Members/" + memberID + "/Contact";
+  const queryDataJson = await fetch(queryURL);
+  const queryData = await queryDataJson.json();
+  var email = queryData.value[0].email;
+  return email;
+};
+
+const mpEmail = await retrieveEmail(await members(readableConstit));
 ---
 
 <Layout title=`${constituency} Renting Statistics`>
@@ -73,12 +109,13 @@ const rentingPercentStat = Math.round((rentingStat / sumStat) * 100);
             {readableConstit}
           </p>
         </div>
-        <button
-          class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
+        <a
+          href={`mailto:${mpEmail}`}
+          class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full text-center"
           type="button"
         >
           LET YOUR MP KNOW
-        </button>
+        </a>
         <button
           class="bg-white hover:bg-dark-blue text-dark-blue hover:text-white border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full"
           type="button"
