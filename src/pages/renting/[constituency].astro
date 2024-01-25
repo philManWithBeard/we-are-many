@@ -84,6 +84,7 @@ const retrieveEmail = async (memberID) => {
 };
 
 const member = await members(readableConstit);
+
 const getMpEmail = async () => {
   if (member !== null) {
     const mpEmail = await retrieveEmail(member);
@@ -93,6 +94,15 @@ const getMpEmail = async () => {
   }
 };
 const mpEmail = await getMpEmail();
+
+const getCallToAction = () => {
+  if (member !== null) {
+    return "LET YOUR MP KNOW";
+  } else {
+    return "NO CURRENT MP";
+  }
+};
+const callToAction = getCallToAction();
 ---
 
 <Layout title=`${constituency} Renting Statistics`>
@@ -126,7 +136,7 @@ const mpEmail = await getMpEmail();
           class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full text-center"
           type="button"
         >
-          LET YOUR MP KNOW
+          {callToAction}
         </a>
         <a
           href={`${import.meta.env.BASE_URL}/renting/`}
