@@ -242,6 +242,7 @@ E14000770	Kingston_and_Surbiton
 E14000771	Kingston_upon_Hull_East
 E14000772	Kingston_upon_Hull_North
 E14000773	Kingston_upon_Hull_West_and_Hessle
+E14000774	Kingswood
 E14000775	Knowsley
 E14000776	Lancaster_and_Fleetwood
 E14000777	Leeds_Central
@@ -364,6 +365,7 @@ E14000893	Reigate
 E14000894	Ribble_Valley
 E14000895	Richmond_(Yorks)
 E14000896	Richmond_Park
+E14000897	Rochdale
 E14000898	Rochester_and_Strood
 E14000899	Rochford_and_Southend_East
 E14000900	Romford
@@ -491,6 +493,7 @@ E14001021	Watford
 E14001022	Waveney
 E14001023	Wealden
 E14001024	Weaver_Vale
+E14001025	Wellingborough
 E14001026	Wells
 E14001027	Welwyn_Hatfield
 E14001028	Wentworth_and_Dearne

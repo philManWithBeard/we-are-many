@@ -63,9 +63,14 @@ const members = async (readableConstit) => {
     "&skip=0&take=1";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  const memberID =
-    queryData.items[0].value.currentRepresentation.member.value.id;
-  return parseInt(memberID);
+  if (queryData.items[0].value.currentRepresentation !== null) {
+    const memberID =
+      queryData.items[0].value.currentRepresentation.member.value.id;
+    return parseInt(memberID);
+  } else {
+    const memberID = null;
+    return memberID;
+  }
 };
 
 //Members API email fetch
@@ -78,7 +83,16 @@ const retrieveEmail = async (memberID) => {
   return email;
 };
 
-const mpEmail = await retrieveEmail(await members(readableConstit));
+const member = await members(readableConstit);
+const getMpEmail = async () => {
+  if (member !== null) {
+    const mpEmail = await retrieveEmail(member);
+    return mpEmail;
+  } else {
+    return null;
+  }
+};
+const mpEmail = await getMpEmail();
 ---
 
 <Layout title=`${constituency} Renting Statistics`>
