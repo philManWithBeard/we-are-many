@@ -63,9 +63,14 @@ const members = async (readableConstit) => {
     "&skip=0&take=1";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  const memberID =
-    queryData.items[0].value.currentRepresentation.member.value.id;
-  return parseInt(memberID);
+  if (queryData.items[0].value.currentRepresentation !== null) {
+    const memberID =
+      queryData.items[0].value.currentRepresentation.member.value.id;
+    return parseInt(memberID);
+  } else {
+    const memberID = null;
+    return memberID;
+  }
 };
 
 //Members API email fetch
@@ -78,7 +83,26 @@ const retrieveEmail = async (memberID) => {
   return email;
 };
 
-const mpEmail = await retrieveEmail(await members(readableConstit));
+const member = await members(readableConstit);
+
+const getMpEmail = async () => {
+  if (member !== null) {
+    const mpEmail = await retrieveEmail(member);
+    return mpEmail;
+  } else {
+    return null;
+  }
+};
+const mpEmail = await getMpEmail();
+
+const getCallToAction = () => {
+  if (member !== null) {
+    return "LET YOUR MP KNOW";
+  } else {
+    return "NO CURRENT MP";
+  }
+};
+const callToAction = getCallToAction();
 ---
 
 <Layout title=`${constituency} Renting Statistics`>
@@ -112,7 +136,7 @@ const mpEmail = await retrieveEmail(await members(readableConstit));
           class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full text-center"
           type="button"
         >
-          LET YOUR MP KNOW
+          {callToAction}
         </a>
         <a
           href={`${import.meta.env.BASE_URL}/renting/`}
