@@ -27,11 +27,11 @@ const wpc = constituencies.find(
 const readableConstit = constituency.replace(/\_/g, " ");
 
 // Throttle api calls
-function resolveAfterHalfSecond() {
+function resolveAfterQuartSecond() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("resolved");
-    }, 500);
+    }, 250);
   });
 }
 
@@ -42,7 +42,7 @@ const onsCall = async (wpc) => {
     wpc[0];
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  await resolveAfterHalfSecond();
+  await resolveAfterQuartSecond();
   const data = queryData.observations;
   return data;
 };
