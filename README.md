@@ -36,7 +36,7 @@ MIT
 Log an issue
 
 ## Preview
-n/a
+https://philmanwithbeard.github.io/we-are-many/renting/
 
 ## Questions
 - [See my Github](https://www.github.com/philManWithBeard)
