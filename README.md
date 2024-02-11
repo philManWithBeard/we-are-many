@@ -11,6 +11,8 @@ A digital democratic tool for renters. Let your Member of Parliament know: Peopl
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
+- [Live](#live)
+- [Preview](#preview)
 - [Questions](#questions)
 
 ## Installation
@@ -35,8 +37,11 @@ MIT
 ## Contributing
 Log an issue
 
-## Preview
+## Live
 https://philmanwithbeard.github.io/we-are-many/renting/
+
+## Preview
+![Preview Image for App](https://raw.githubusercontent.com/philManWithBeard/we-are-many/master/we-are-many.png)
 
 ## Questions
 - [See my Github](https://www.github.com/philManWithBeard)
