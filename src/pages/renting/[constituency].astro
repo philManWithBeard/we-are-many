@@ -74,17 +74,17 @@ const members = async (readableConstit) => {
   }
 };
 
+const member = await members(readableConstit);
+
 //Members API email fetch
 const retrieveEmail = async (memberID) => {
   var queryURL =
     "https://members-api.parliament.uk/api/Members/" + memberID + "/Contact";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  var email = queryData.value[0].email;
+  const email = queryData.value[0].email;
   return email;
 };
-
-const member = await members(readableConstit);
 
 const getMpEmail = async () => {
   if (member !== null) {
