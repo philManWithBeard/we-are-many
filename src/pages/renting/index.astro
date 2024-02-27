@@ -17,25 +17,33 @@ import electionImage from "../../../src/images/artwork.png";
           I want my Member of Parliament to know: People who rent have a lot of
           votes
         </h2>
-        <form class="group" method="POST" novalidate>
-          <input
-            type="text"
-            name="postcode"
-            id="postcodeInput"
-            class="border text-center border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-            placeholder="Enter Your Postcode"
-            required
-            pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
-          />
-          <span
-            class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
-          >
-            Please enter a valid postcode
-          </span>
+        <form method="POST">
+          <div class="mb-4">
+            <label for="postcode" class="block text-gray-700 font-medium mb-2"
+              >Search by Postcode</label
+            >
+            <input
+              id="postcodeInput"
+              type="text"
+              name="postcode"
+              class="border text-center border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer"
+              pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
+              title="Please enter a valid UK postcode"
+              required
+              placeholder="AB12 CD3"
+            />
+
+            <p
+              class="mt-2 text-sm text-red hidden peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
+            >
+              Please enter a valid email address
+            </p>
+          </div>
           <button
             type="submit"
-            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline underline-offset-4 font-bold py-2 px-4 focus:outline-none focus:shadow-outline max-w-80 w-full mt-5 group-invalid:pointer-events-none group-invalid:opacity-70"
-            id="postcodeBtn">HOW MANY ARE WITH ME?</button
+            id="postcodeBtn"
+            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline underline-offset-4 font-bold py-2 px-4"
+            >HOW MANY ARE WITH ME?</button
           >
         </form>
       </div>
