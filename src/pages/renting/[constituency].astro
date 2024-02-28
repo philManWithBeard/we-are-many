@@ -16,10 +16,10 @@ export function getStaticPaths() {
   return constitStatic;
 }
 
-// pass constituency variable to the page
+// Pass constituency variable to the page
 const { constituency } = Astro.params;
 
-//
+// Pass constituency name to the wpc const
 const wpc = constituencies.find(
   (constituencyArray) => constituencyArray[1] === Astro.params.constituency
 );
@@ -32,7 +32,7 @@ function resolveAfterQuartSecond() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("resolved");
-    }, 250);
+    }, 1);
   });
 }
 
@@ -82,8 +82,13 @@ const retrieveEmail = async (memberID) => {
     "https://members-api.parliament.uk/api/Members/" + memberID + "/Contact";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  const email = queryData.value[0].email;
-  return email;
+  if (queryData.value[0]) {
+    const email = queryData.value[0].email;
+    return email;
+  } else {
+    const email = null;
+    return email;
+  }
 };
 
 const getMpEmail = async () => {
@@ -97,10 +102,12 @@ const getMpEmail = async () => {
 const mpEmail = await getMpEmail();
 
 const getCallToAction = () => {
-  if (member !== null) {
+  if (member !== null && mpEmail !== null) {
     return "LET YOUR MP KNOW";
-  } else {
+  } else if (member == null) {
     return "NO CURRENT MP";
+  } else if (mpEmail == null) {
+    return "NO MP EMAIL ADDRESS";
   }
 };
 
