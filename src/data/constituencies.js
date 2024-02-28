@@ -242,6 +242,7 @@ E14000770	Kingston_and_Surbiton
 E14000771	Kingston_upon_Hull_East
 E14000772	Kingston_upon_Hull_North
 E14000773	Kingston_upon_Hull_West_and_Hessle
+E14000774	Kingswood
 E14000775	Knowsley
 E14000776	Lancaster_and_Fleetwood
 E14000777	Leeds_Central
@@ -492,7 +493,7 @@ E14001021	Watford
 E14001022	Waveney
 E14001023	Wealden
 E14001024	Weaver_Vale
-
+E14001025	Wellingborough
 E14001026	Wells
 E14001027	Welwyn_Hatfield
 E14001028	Wentworth_and_Dearne
