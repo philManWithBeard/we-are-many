@@ -54,8 +54,9 @@ import electionImage from "../../../src/images/artwork.png";
       >
         <Image
           src={electionImage}
-          widths={[240, 540, 720, electionImage.width]}
-          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${electionImage.width}px`}
+          widths={[320, 512, electionImage.width]}
+          sizes={`(max-width: 720px) 320px, (max-width: 1600px) 512px, ${electionImage.width}px`}
+          loading="eager"
           alt="illustration of people waiting to vote"
         />
       </div>
