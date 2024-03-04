@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import constituencies from "../../data/constituencies";
 import ButtonLink from "../../components/ButtonLink.astro";
+import Graph from "../../components/Graph.astro";
 
 // makes static page for each constituency
 export function getStaticPaths() {
@@ -122,7 +123,8 @@ const callToAction = getCallToAction();
       <div
         class="flex flex-row lg:flex-col gap-10 justify-center items-center text-center"
       >
-        <div><p>GRAPH</p><p>PLACE</p><p>HOLDER</p></div>
+        <Graph renting={rentingStat} people={sumStat} />
+
         <p class="text-2xl">
           <strong class="text-6xl font-bold block">{rentingPercentStat}%</strong
           > are renting

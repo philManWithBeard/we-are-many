@@ -1,0 +1,32 @@
+---
+interface Props {
+  renting: number;
+  people: number;
+}
+
+const { renting, people } = Astro.props;
+---
+
+<div style="width: 200px;"><canvas id="acquisitions"></canvas></div>
+
+<script>
+  import Chart from "chart.js/auto";
+
+  (async function () {
+    const data = {
+      datasets: [
+        {
+          label: "My First Dataset",
+          data: [300, 50],
+          backgroundColor: ["#C06A45", "#5B6D93"],
+          hoverOffset: 4,
+        },
+      ],
+    };
+
+    new Chart(document.getElementById("acquisitions"), {
+      type: "doughnut",
+      data: data,
+    });
+  })();
+</script>
