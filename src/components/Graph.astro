@@ -13,17 +13,17 @@ const { renting, people } = Astro.props;
 </div>
 
 <script>
-  import { Chart, DoughnutController, ArcElement } from "chart.js";
+  import { Chart, DoughnutController, ArcElement, Tooltip } from "chart.js";
 
-  Chart.register(DoughnutController, ArcElement);
+  Chart.register(DoughnutController, ArcElement, Tooltip);
 
   const acquisitions = document.getElementById("acquisitions");
 
   (async function () {
     const data = {
+      labels: ["Renters", "Population"],
       datasets: [
         {
-          label: "Renters per population",
           data: [acquisitions.dataset.renting, acquisitions.dataset.people],
           backgroundColor: ["#C06A45", "#5B6D93"],
           hoverOffset: 4,
