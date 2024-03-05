@@ -18,13 +18,15 @@ const { renting, people } = Astro.props;
   Chart.register(DoughnutController, ArcElement, Tooltip);
 
   const acquisitions = document.getElementById("acquisitions");
+  const renting = acquisitions.dataset.renting;
+  const nonRenting = acquisitions.dataset.people - renting;
 
   (async function () {
     const data = {
-      labels: ["Renters", "Population"],
+      labels: ["Renters", "Non-Renters"],
       datasets: [
         {
-          data: [acquisitions.dataset.renting, acquisitions.dataset.people],
+          data: [renting, nonRenting],
           backgroundColor: ["#C06A45", "#5B6D93"],
           hoverOffset: 4,
         },
