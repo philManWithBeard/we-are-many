@@ -13,7 +13,9 @@ const { renting, people } = Astro.props;
 </div>
 
 <script>
-  import Chart from "chart.js/auto";
+  import { Chart, DoughnutController, ArcElement } from "chart.js";
+
+  Chart.register(DoughnutController, ArcElement);
 
   const acquisitions = document.getElementById("acquisitions");
 
