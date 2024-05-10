@@ -12,30 +12,36 @@ const { renting, people } = Astro.props;
   ></canvas>
 </div>
 
-<script is:inline data-astro-rerun>
+<script>
   import { Chart, DoughnutController, ArcElement, Tooltip } from "chart.js";
 
-  Chart.register(DoughnutController, ArcElement, Tooltip);
+  document.addEventListener(
+    "astro:page-load",
+    () => {
+      Chart.register(DoughnutController, ArcElement, Tooltip);
 
-  const acquisitions = document.getElementById("acquisitions");
-  const renting = acquisitions.dataset.renting;
-  const nonRenting = acquisitions.dataset.people - renting;
+      const acquisitions = document.getElementById("acquisitions");
+      const renting = acquisitions.dataset.renting;
+      const nonRenting = acquisitions.dataset.people - renting;
 
-  (async function () {
-    const data = {
-      labels: ["Renters", "Non-Renters"],
-      datasets: [
-        {
-          data: [renting, nonRenting],
-          backgroundColor: ["#C06A45", "#5B6D93"],
-          hoverOffset: 4,
-        },
-      ],
-    };
+      (async function () {
+        const data = {
+          labels: ["Renters", "Non-Renters"],
+          datasets: [
+            {
+              data: [renting, nonRenting],
+              backgroundColor: ["#C06A45", "#5B6D93"],
+              hoverOffset: 4,
+            },
+          ],
+        };
 
-    new Chart(acquisitions, {
-      type: "doughnut",
-      data: data,
-    });
-  })();
+        new Chart(acquisitions, {
+          type: "doughnut",
+          data: data,
+        });
+      })();
+    },
+    { once: false }
+  );
 </script>
