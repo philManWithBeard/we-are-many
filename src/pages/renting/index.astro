@@ -69,14 +69,15 @@ import electionImage from "../../../src/images/artwork.png";
   document.addEventListener("astro:page-load", function () {
     const postcodeBtnEl = document.getElementById("postcodeBtn");
     const postcodeInputEl = document.getElementById("postcodeInput");
-    console.log("hello world");
 
-    postcodeBtnEl.addEventListener("click", (event) => {
-      event.preventDefault();
+    if (postcodeBtnEl) {
+      postcodeBtnEl.addEventListener("click", (event) => {
+        event.preventDefault();
 
-      const postcode = postcodeInputEl.value;
-      retrieveCID(postcode);
-    });
+        const postcode = postcodeInputEl.value;
+        retrieveCID(postcode);
+      });
+    }
   });
 
   //FTP API fetch
