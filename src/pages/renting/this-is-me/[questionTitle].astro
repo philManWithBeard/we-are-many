@@ -1,0 +1,52 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import questions from "../../../data/questions.js";
+
+// makes static page for each constituency
+
+export function getStaticPaths() {
+  const questionStatic = questions.map((question) => {
+    const returnStat = {
+      params: {
+        questionTitle: question.title,
+      },
+    };
+    return returnStat;
+  });
+  return questionStatic;
+}
+
+const { questionTitle } = Astro.params;
+
+const titleToFind = questionTitle;
+
+const questionIndex = questions.findIndex(
+  (question) => question.title === titleToFind
+);
+
+const questionArray = questions[questionIndex];
+---
+
+<Layout title=`How Many of Us Are There - Renting`>
+  <main class="w-screen text-xl">
+    <section
+      class="flex flex-col gap-10 py-10 px-5 text-black justify-center items-center"
+    >
+      <div>
+        <h2 class="text-4xl md:text-6xl leading">
+          {questionArray.question}
+        </h2>
+        <form method="POST">
+          <div class="mb-4"> </div>
+          <button
+            type="submit"
+            id="postcodeBtn"
+            class="bg-dark-blue hover:bg-white text-white hover:text-dark-blue hover:border-dark-blue border underline underline-offset-4 font-bold py-2 px-4"
+            >Next</button
+          >
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+<script></script>
