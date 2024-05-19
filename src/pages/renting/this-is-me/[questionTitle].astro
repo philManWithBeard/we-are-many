@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import questions from "../../../data/questions.js";
+import CheckBoxInput from "../../../components/checkBoxInput.astro";
 
 // makes static page for each constituency
 
@@ -33,11 +34,20 @@ const questionArray = questions[questionIndex];
       class="flex flex-col gap-10 py-10 px-5 text-black justify-center items-center"
     >
       <div>
-        <h2 class="text-4xl md:text-6xl leading">
-          {questionArray.question}
-        </h2>
         <form method="POST">
-          <div class="mb-4"> </div>
+          <h2 class="text-4xl md:text-6xl leading">
+            {questionArray.question}
+          </h2>
+          <fieldset class="py-5">
+            {
+              questionArray.answers.map((answer) => (
+                <>
+                  <CheckBoxInput answer={answer.answer} label={answer.label} />
+                  <br />
+                </>
+              ))
+            }
+          </fieldset>
           <button
             type="submit"
             id="postcodeBtn"
