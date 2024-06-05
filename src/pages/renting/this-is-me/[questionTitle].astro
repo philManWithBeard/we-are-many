@@ -2,9 +2,12 @@
 import Layout from "../../../layouts/Layout.astro";
 import questions from "../../../data/questions.js";
 import CheckBoxInput from "../../../components/checkBoxInput.astro";
+import { formDataToObject } from "astro:actions";
 
-// makes static page for each constituency
+// Astro SSR Mode
+export const prerender = false;
 
+// Get url path from questions array of objects
 export function getStaticPaths() {
   const questionStatic = questions.map((question) => {
     const returnStat = {
@@ -17,15 +20,37 @@ export function getStaticPaths() {
   return questionStatic;
 }
 
+// destructure parameters to get questionTitle from path
 const { questionTitle } = Astro.params;
 
-const titleToFind = questionTitle;
-
+//
 const questionIndex = questions.findIndex(
-  (question) => question.title === titleToFind
+  (question) => question.title === questionTitle
 );
 
 const questionArray = questions[questionIndex];
+
+if (questionIndex >= questionArray.length) {
+  const nextQuestion = questions[questionIndex + 1].title;
+}
+
+//
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const checkboxArray = [...data.keys()];
+    console.log(checkboxArray);
+    // Display the keys
+    // for (const key of data.keys()) {
+    //   console.log(key);
+    // }
+  } catch (error) {
+    console.log("*****");
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
 ---
 
 <Layout title=`How Many of Us Are There - Renting`>
