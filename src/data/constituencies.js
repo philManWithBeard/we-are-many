@@ -1,4 +1,4 @@
-const rawData = `E14001136 Broadland_and_Fakenham
+const rawData = `E14001136	Broadland_and_Fakenham
 E14001256	Great_Yarmouth
 E14001396	North_Norfolk
 E14001365	Mid_Norfolk
@@ -578,4 +578,5 @@ const constituencies = rawData
   .split(/\n/)
   .map((constituency) => constituency.split(/\t/));
 
+console.log(constituencies);
 export default constituencies;
