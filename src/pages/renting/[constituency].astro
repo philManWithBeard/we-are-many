@@ -28,15 +28,6 @@ const wpc = constituencies.find(
 // Make the constituency human readable
 const readableConstit = constituency.replace(/\_/g, " ");
 
-// Throttle api calls
-function resolveAfterQuartSecond() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("resolved");
-    }, 250);
-  });
-}
-
 //ONS API fetch
 const onsCall = async (wpc) => {
   const queryURL =
@@ -45,7 +36,6 @@ const onsCall = async (wpc) => {
     "%27%5D+%7BcouncilRented%2C+socialRented%2C+privateLandlord%2C+otherPrivate%2C+ownsOutright%2C+ownsMortgage%7D";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  // await resolveAfterQuartSecond();
   const data = queryData.result[0];
   return data;
 };
@@ -53,7 +43,6 @@ const onsCall = async (wpc) => {
 // ONS variables for jsx
 const data = await onsCall(wpc);
 
-console.log(data.constituencyName);
 const sumStat =
   data.councilRented +
   data.socialRented +
