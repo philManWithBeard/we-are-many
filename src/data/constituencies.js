@@ -562,7 +562,7 @@ W07000098	Llanelli
 W07000099	Merthyr_Tydfil_and_Aberdare
 W07000100	Mid_and_South_Pembrokeshire
 W07000101	Monmouthshire
-W07000102	Montgomeryshire_and_Glyndŵr
+W07000102	Montgomeryshire_and_Glyndwr
 W07000103	Neath_and_Swansea_East
 W07000104	Newport_East
 W07000105	Newport_West_and_Islwyn
