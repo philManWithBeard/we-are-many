@@ -28,33 +28,33 @@ const wpc = constituencies.find(
 // Make the constituency human readable
 const readableConstit = constituency.replace(/\_/g, " ");
 
-// Throttle api calls
-function resolveAfterQuartSecond() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("resolved");
-    }, 250);
-  });
-}
-
 //ONS API fetch
 const onsCall = async (wpc) => {
   const queryURL =
-    "https://api.beta.ons.gov.uk/v1/datasets/TS054/editions/2021/versions/4/json?area-type=wpc," +
-    wpc[0];
+    "https://sh0o5ivn.api.sanity.io/v2022-03-07/data/query/production?query=*%5B_type+%3D%3D+%27rentingByConstituency%27+%26%26+_id+%3D%3D+%27" +
+    wpc[0] +
+    "%27%5D+%7BcouncilRented%2C+socialRented%2C+privateLandlord%2C+otherPrivate%2C+ownsOutright%2C+ownsMortgage%7D";
   const queryDataJson = await fetch(queryURL);
   const queryData = await queryDataJson.json();
-  await resolveAfterQuartSecond();
-  const data = queryData.observations;
+  const data = queryData.result[0];
   return data;
 };
 
 // ONS variables for jsx
 const data = await onsCall(wpc);
-const sumStat = data.reduce(
-  (accumulator, currentValue) => accumulator + currentValue
-);
-const rentingStat = data[6] + data[7];
+
+const sumStat =
+  data.councilRented +
+  data.socialRented +
+  data.privateLandlord +
+  data.otherPrivate +
+  data.ownsOutright +
+  data.ownsMortgage;
+const rentingStat =
+  data.councilRented +
+  data.socialRented +
+  data.privateLandlord +
+  data.otherPrivate;
 const rentingPercentStat = Math.round((rentingStat / sumStat) * 100);
 
 //Members API Member ID fetch
