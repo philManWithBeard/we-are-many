@@ -1,4 +1,4 @@
-import { defineTable, column } from "astro:db";
+import { defineDb, defineTable, column } from "astro:db";
 
 const User = defineTable({
   columns: {
@@ -50,4 +50,8 @@ const UserAnswer = defineTable({
     userId: column.number({ references: () => User.columns.id }),
     createdOn: column.date(),
   },
+});
+
+export default defineDb({
+  tables: { UserAnswer, Answer, Question, QuestionType, User, Campaign },
 });
